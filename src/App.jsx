@@ -1,0 +1,279 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Lock, Home, Scroll, Shield } from 'lucide-react';
+import HouseGlass from './components/HouseGlass';
+import ChoreBoard from './components/ChoreBoard';
+import ParentDashboard from './components/ParentDashboard';
+import {
+  loadData,
+  saveData,
+  claimChore,
+  releaseChore,
+  approveChore,
+  rejectChore,
+  addChore,
+  deleteChore,
+  addPoints,
+  verifyPassword
+} from './utils/dataStore';
+import './App.css';
+
+function App() {
+  const [data, setData] = useState(loadData());
+  const [currentView, setCurrentView] = useState('home'); // home, chores, parent
+  const [isParentAuthenticated, setIsParentAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  // Save data whenever it changes
+  useEffect(() => {
+    saveData(data);
+  }, [data]);
+
+  // Handle claiming a chore
+  const handleClaimChore = (choreId, childId) => {
+    const newData = claimChore(data, choreId, childId);
+    setData(newData);
+  };
+
+  // Handle releasing a chore
+  const handleReleaseChore = (choreId) => {
+    const newData = releaseChore(data, choreId);
+    setData(newData);
+  };
+
+  // Handle approving a chore
+  const handleApproveChore = (choreId, customPoints) => {
+    const newData = approveChore(data, choreId, customPoints);
+    setData(newData);
+  };
+
+  // Handle rejecting a chore
+  const handleRejectChore = (choreId) => {
+    const newData = rejectChore(data, choreId);
+    setData(newData);
+  };
+
+  // Handle adding a new chore
+  const handleAddChore = (name, points) => {
+    const newData = addChore(data, name, points);
+    setData(newData);
+  };
+
+  // Handle deleting a chore
+  const handleDeleteChore = (choreId) => {
+    const newData = deleteChore(data, choreId);
+    setData(newData);
+  };
+
+  // Handle awarding bonus points
+  const handleAwardBonusPoints = (childId, points, reason) => {
+    const newData = addPoints(data, childId, points, reason);
+    setData(newData);
+  };
+
+  // Handle parent login
+  const handleParentLogin = (e) => {
+    e.preventDefault();
+    if (verifyPassword(data, passwordInput)) {
+      setIsParentAuthenticated(true);
+      setPasswordError('');
+      setPasswordInput('');
+      setCurrentView('parent');
+    } else {
+      setPasswordError('Incorrect password! Try "accio"');
+      setPasswordInput('');
+    }
+  };
+
+  // Handle navigation
+  const handleNavigation = (view) => {
+    if (view === 'parent' && !isParentAuthenticated) {
+      // Show password prompt
+      return;
+    }
+    setCurrentView(view);
+  };
+
+  return (
+    <div className="app">
+      {/* Magical background elements */}
+      <div className="stars"></div>
+      <div className="stars2"></div>
+      <div className="stars3"></div>
+
+      {/* Navigation */}
+      <nav className="nav">
+        <div className="nav-brand">
+          <Shield size={32} />
+          <span className="nav-title">Garvwarts</span>
+        </div>
+        <div className="nav-links">
+          <motion.button
+            className={`nav-button ${currentView === 'home' ? 'active' : ''}`}
+            onClick={() => handleNavigation('home')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Home size={20} />
+            <span>House Cup</span>
+          </motion.button>
+          <motion.button
+            className={`nav-button ${currentView === 'chores' ? 'active' : ''}`}
+            onClick={() => handleNavigation('chores')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Scroll size={20} />
+            <span>Quest Board</span>
+          </motion.button>
+          <motion.button
+            className={`nav-button ${currentView === 'parent' ? 'active' : ''}`}
+            onClick={() => handleNavigation('parent')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Lock size={20} />
+            <span>Headmaster</span>
+          </motion.button>
+        </div>
+      </nav>
+
+      {/* Main content */}
+      <main className="main-content">
+        <AnimatePresence mode="wait">
+          {currentView === 'home' && (
+            <motion.div
+              key="home"
+              className="view-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="home-header">
+                <motion.h1
+                  className="main-title"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  The House Cup
+                </motion.h1>
+                <p className="main-subtitle">
+                  May the best house win! Complete quests to earn house points.
+                </p>
+              </div>
+
+              <div className="houses-container">
+                {Object.values(data.houses).map((house, index) => (
+                  <motion.div
+                    key={house.id}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.2 + 0.4, duration: 0.6 }}
+                  >
+                    <HouseGlass house={house} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {currentView === 'chores' && (
+            <motion.div
+              key="chores"
+              className="view-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChoreBoard
+                chores={data.chores}
+                houses={data.houses}
+                onClaimChore={handleClaimChore}
+                onReleaseChore={handleReleaseChore}
+              />
+            </motion.div>
+          )}
+
+          {currentView === 'parent' && !isParentAuthenticated && (
+            <motion.div
+              key="login"
+              className="view-container"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="login-container">
+                <motion.div
+                  className="login-box"
+                  initial={{ y: -50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Lock size={48} className="login-icon" />
+                  <h2 className="login-title">Headmaster Access</h2>
+                  <p className="login-subtitle">Enter the password to continue</p>
+                  <form onSubmit={handleParentLogin}>
+                    <input
+                      type="password"
+                      className="login-input"
+                      placeholder="Enter password"
+                      value={passwordInput}
+                      onChange={(e) => setPasswordInput(e.target.value)}
+                      autoFocus
+                    />
+                    {passwordError && (
+                      <motion.div
+                        className="login-error"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        {passwordError}
+                      </motion.div>
+                    )}
+                    <motion.button
+                      type="submit"
+                      className="login-button"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Unlock
+                    </motion.button>
+                  </form>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+
+          {currentView === 'parent' && isParentAuthenticated && (
+            <motion.div
+              key="parent"
+              className="view-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ParentDashboard
+                chores={data.chores}
+                houses={data.houses}
+                history={data.history}
+                onApproveChore={handleApproveChore}
+                onRejectChore={handleRejectChore}
+                onAddChore={handleAddChore}
+                onDeleteChore={handleDeleteChore}
+                onAwardBonusPoints={handleAwardBonusPoints}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+    </div>
+  );
+}
+
+export default App;

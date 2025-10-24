@@ -1,0 +1,183 @@
+.chore-board {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.board-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.board-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  font-family: 'Cinzel', serif;
+  color: #f0c75e;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.board-subtitle {
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.chore-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #f0c75e;
+  font-family: 'Cinzel', serif;
+}
+
+.chore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.chore-card {
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(50, 50, 50, 0.8));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.chore-card.claimed {
+  border-width: 3px;
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.95), rgba(60, 60, 60, 0.9));
+}
+
+.chore-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.chore-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.chore-points {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #f0c75e;
+  white-space: nowrap;
+}
+
+.chore-claimed-by {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  border-left: 3px solid;
+}
+
+.claim-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.claim-button {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 15px;
+  border: 2px solid;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.claim-button:hover {
+  filter: brightness(1.2);
+}
+
+.claim-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.claim-button:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+.chore-button {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.chore-button.release {
+  background: linear-gradient(135deg, #666, #888);
+}
+
+.chore-button.release:hover {
+  background: linear-gradient(135deg, #777, #999);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .chore-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}

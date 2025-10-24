@@ -1,0 +1,352 @@
+.parent-dashboard {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  font-family: 'Cinzel', serif;
+  color: #f0c75e;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.dashboard-section {
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(50, 50, 50, 0.8));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0 0 25px 0;
+  color: #f0c75e;
+  font-family: 'Cinzel', serif;
+}
+
+.approval-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.approval-card {
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.95), rgba(60, 60, 60, 0.9));
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.approval-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.chore-info {
+  flex: 1;
+}
+
+.chore-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.chore-meta {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.chore-time {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.default-points {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f0c75e;
+}
+
+.approval-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.custom-points-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-points-input label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.custom-points-input input {
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-button,
+.reject-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.approve-button {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.approve-button:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.reject-button {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.reject-button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.bonus-form,
+.add-chore-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.bonus-form select,
+.bonus-form input,
+.add-chore-form input {
+  padding: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.bonus-form select,
+.form-row input {
+  flex: 1;
+}
+
+.submit-button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+
+.chore-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chore-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chore-item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.chore-item-name {
+  font-size: 1rem;
+}
+
+.chore-item-points {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #f0c75e;
+  font-weight: 600;
+}
+
+.delete-button {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.history-toggle {
+  width: 100%;
+  padding: 14px 24px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.history-toggle:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.history-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-entry {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid;
+  display: grid;
+  grid-template-columns: 1fr 2fr auto auto;
+  gap: 15px;
+  align-items: center;
+}
+
+.history-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.history-reason {
+  font-size: 0.95rem;
+}
+
+.history-points {
+  font-weight: bold;
+  color: #22c55e;
+  white-space: nowrap;
+}
+
+.history-time {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.empty-history {
+  text-align: center;
+  padding: 40px;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .history-entry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+  }
+}
