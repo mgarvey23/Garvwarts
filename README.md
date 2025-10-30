@@ -67,6 +67,27 @@ npm run build
 
 The production build will be in the `dist` folder.
 
+### Deploying to GitHub Pages
+
+The app is configured to automatically deploy to GitHub Pages when you push to the main/master branch.
+
+**To enable GitHub Pages:**
+1. Go to your repository settings on GitHub
+2. Navigate to "Pages" in the left sidebar
+3. Under "Build and deployment", select:
+   - **Source**: GitHub Actions
+4. Push your code to the main/master branch
+5. The GitHub Action will automatically build and deploy
+6. Your app will be available at: `https://[username].github.io/Garvwarts/`
+
+**Manual deployment:**
+```bash
+npm run build
+# Then deploy the dist/ folder to your hosting service
+```
+
+**Note**: The app uses localStorage, so each user's data is stored locally in their browser. For multi-device support, you'd need to add a backend like Firebase.
+
 ## How to Use
 
 ### As a Kid:
