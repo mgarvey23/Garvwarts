@@ -75,9 +75,11 @@ The app is configured to automatically deploy to GitHub Pages when you push to t
 1. Go to your repository settings on GitHub
 2. Navigate to "Pages" in the left sidebar
 3. Under "Build and deployment", select:
-   - **Source**: GitHub Actions
+   - **Source**: Deploy from a branch
+   - **Branch**: gh-pages
+   - **Folder**: / (root)
 4. Push your code to the main/master branch
-5. The GitHub Action will automatically build and deploy
+5. The GitHub Action will automatically build and deploy to gh-pages branch
 6. Your app will be available at: `https://[username].github.io/Garvwarts/`
 
 **Manual deployment:**
