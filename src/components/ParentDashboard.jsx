@@ -8,7 +8,10 @@ import {
   Wand2,
   Trash2,
   History,
-  Award
+  Award,
+  Minus,
+  RotateCcw,
+  AlertTriangle
 } from 'lucide-react';
 import './ParentDashboard.css';
 
@@ -20,7 +23,10 @@ const ParentDashboard = ({
   onRejectChore,
   onAddChore,
   onDeleteChore,
-  onAwardBonusPoints
+  onAwardBonusPoints,
+  onDeductPoints,
+  onResetHousePoints,
+  onResetAllPoints
 }) => {
   const [newChoreName, setNewChoreName] = useState('');
   const [newChorePoints, setNewChorePoints] = useState('');
@@ -28,6 +34,10 @@ const ParentDashboard = ({
   const [bonusChild, setBonusChild] = useState('');
   const [bonusPoints, setBonusPoints] = useState('');
   const [bonusReason, setBonusReason] = useState('');
+  const [deductChild, setDeductChild] = useState('');
+  const [deductPoints, setDeductPoints] = useState('');
+  const [deductReason, setDeductReason] = useState('');
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
 
   const claimedChores = chores.filter(c => c.status === 'claimed');
@@ -58,6 +68,23 @@ const ParentDashboard = ({
       setBonusChild('');
       setBonusPoints('');
       setBonusReason('');
+    }
+  };
+
+  const handleDeductPoints = (e) => {
+    e.preventDefault();
+    if (deductChild && deductPoints && deductReason.trim()) {
+      onDeductPoints(deductChild, parseInt(deductPoints), deductReason.trim());
+      setDeductChild('');
+      setDeductPoints('');
+      setDeductReason('');
+    }
+  };
+
+  const handleResetAllPoints = () => {
+    if (window.confirm('Are you sure you want to reset ALL house points? This cannot be undone!')) {
+      onResetAllPoints();
+      setShowResetConfirm(false);
     }
   };
 
@@ -196,6 +223,88 @@ const ParentDashboard = ({
             <Wand2 size={18} /> Award Points
           </motion.button>
         </form>
+      </div>
+
+      {/* Deduct Points */}
+      <div className="dashboard-section">
+        <h3 className="section-title">
+          <Minus size={24} /> Deduct Points
+        </h3>
+        <form className="bonus-form deduct-form" onSubmit={handleDeductPoints}>
+          <div className="form-row">
+            <select
+              value={deductChild}
+              onChange={(e) => setDeductChild(e.target.value)}
+              required
+            >
+              <option value="">Select Child</option>
+              {Object.values(houses).map(house => (
+                <option key={house.id} value={house.id}>
+                  {house.name} ({house.house})
+                </option>
+              ))}
+            </select>
+            <input
+              type="number"
+              placeholder="Points to deduct"
+              value={deductPoints}
+              onChange={(e) => setDeductPoints(e.target.value)}
+              min="1"
+              max="3000"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            placeholder="Reason (e.g., 'Misbehavior' or 'Chore not done')"
+            value={deductReason}
+            onChange={(e) => setDeductReason(e.target.value)}
+            required
+          />
+          <motion.button
+            type="submit"
+            className="submit-button deduct-button"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Minus size={18} /> Deduct Points
+          </motion.button>
+        </form>
+      </div>
+
+      {/* Reset Points */}
+      <div className="dashboard-section danger-section">
+        <h3 className="section-title">
+          <AlertTriangle size={24} /> Danger Zone
+        </h3>
+        <p className="danger-description">
+          Use these options carefully. Resetting points cannot be undone.
+        </p>
+        <div className="danger-actions">
+          {Object.values(houses).map(house => (
+            <motion.button
+              key={house.id}
+              className="reset-button"
+              onClick={() => {
+                if (window.confirm(`Reset all points for ${house.name}? This cannot be undone!`)) {
+                  onResetHousePoints(house.id);
+                }
+              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <RotateCcw size={16} /> Reset {house.name}
+            </motion.button>
+          ))}
+          <motion.button
+            className="reset-button reset-all-button"
+            onClick={handleResetAllPoints}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <RotateCcw size={16} /> Reset All Points
+          </motion.button>
+        </div>
       </div>
 
       {/* Add New Chore */}

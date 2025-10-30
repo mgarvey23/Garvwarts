@@ -6,17 +6,22 @@ A magical Harry Potter-themed chore tracker where kids can earn house points by 
 
 ### For Kids
 - **Three Houses**: Clayton (Slytherin - Green), Avery (Ravenclaw - Blue), and Josie (Hufflepuff - Yellow)
+- **Live Leaderboard**: See who's winning the House Cup with real-time rankings
 - **Quest Board**: Browse and claim available chores
 - **Animated House Glasses**: Watch your house glass fill as you earn points (0-3,000 scale)
 - **Overflow Effect**: Points continue accumulating even after the glass is full, with a magical overflow animation
+- **Achievement Badges**: Unlock achievements at milestones (100, 500, 1000, 2000, 3000 points)
+- **Magical Celebrations**: Particle effects when points are awarded
 - **Real-time Updates**: See everyone's progress in the House Cup
 
 ### For Parents (Headmaster Dashboard)
 - **Approval System**: Review and approve completed chores
 - **Custom Point Awards**: Adjust point values when approving chores
 - **Bonus Points**: Award bonus points for good behavior, extra effort, or special achievements
+- **Point Deduction**: Remove points for misbehavior or incomplete tasks
+- **Reset Functionality**: Reset individual or all house points (with confirmation)
 - **Quest Management**: Add custom quests and manage the quest board
-- **History Tracking**: View complete history of all points awarded
+- **History Tracking**: View complete history of all points awarded (including deductions)
 - **Password Protected**: Secure access with password (default: "accio")
 
 ## Harry Potter Theme
@@ -112,6 +117,24 @@ The production build will be in the `dist` folder.
 | Extra kindness | 100 |
 | Babysit sibling | 150 |
 
+## Achievement System
+
+Kids unlock special achievement badges as they reach point milestones:
+
+| Achievement | Points Required | Icon |
+|-------------|----------------|------|
+| First Quest | 1 | ⭐ Star |
+| 100 Point Club | 100 | 🏅 Award |
+| Rising Star | 500 | ✨ Sparkles |
+| House Champion | 1,000 | 🏆 Trophy |
+| Legendary Wizard | 2,000 | ⚡ Lightning |
+| Grand Master | 3,000 | 👑 Crown |
+
+When an achievement is unlocked:
+- A full-screen celebration appears with the achievement details
+- Magical particle effects burst across the screen
+- The achievement is permanently earned (tracked in localStorage)
+
 ## Customization
 
 ### Changing the Password
@@ -153,18 +176,30 @@ Works on all modern browsers:
 
 Optimized for desktop/laptop use as specified.
 
+## New Features Added
+
+### Version 2.0 Enhancements:
+- ✅ **Leaderboard**: Real-time house standings with trophy rankings
+- ✅ **Achievement System**: 6 milestone badges with full-screen celebrations
+- ✅ **Magical Particles**: Animated particle effects when points are awarded
+- ✅ **Point Deduction**: Parents can remove points for misbehavior
+- ✅ **Reset Functionality**: Reset individual or all house points with confirmation
+- ✅ **Enhanced Animations**: Smooth transitions and celebratory effects
+
 ## Future Enhancement Ideas
 
-- Sound effects when awarding points
-- Achievement badges
-- Weekly leaderboard with reset option
+- Sound effects when awarding points (spell casting, glass filling)
+- Weekly/monthly competition cycles with automatic reset
 - Email/text notifications to parents when quests are claimed
-- Mobile app version
+- Mobile app version with push notifications
 - Firebase backend for multi-device sync
-- Printable certificates for milestones
-- House crest graphics
+- Printable certificates for achievements and milestones
+- Custom house crest graphics upload
 - Wand cursor animation
-- Spell-casting sound effects
+- Daily/weekly bonus challenges
+- Parent approval notifications to kids
+- Photo proof of completed chores
+- Point multipliers for special events
 
 ## License
 

@@ -4,6 +4,9 @@ import { Lock, Home, Scroll, Shield } from 'lucide-react';
 import HouseGlass from './components/HouseGlass';
 import ChoreBoard from './components/ChoreBoard';
 import ParentDashboard from './components/ParentDashboard';
+import Leaderboard from './components/Leaderboard';
+import MagicalParticles from './components/MagicalParticles';
+import AchievementBadge, { getNewAchievements } from './components/AchievementBadge';
 import {
   loadData,
   saveData,
@@ -14,6 +17,9 @@ import {
   addChore,
   deleteChore,
   addPoints,
+  deductPoints,
+  resetHousePoints,
+  resetAllPoints,
   verifyPassword
 } from './utils/dataStore';
 import './App.css';
@@ -24,6 +30,9 @@ function App() {
   const [isParentAuthenticated, setIsParentAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [particleTrigger, setParticleTrigger] = useState(0);
+  const [particleColor, setParticleColor] = useState('#f0c75e');
+  const [currentAchievement, setCurrentAchievement] = useState(null);
 
   // Save data whenever it changes
   useEffect(() => {
@@ -44,8 +53,29 @@ function App() {
 
   // Handle approving a chore
   const handleApproveChore = (choreId, customPoints) => {
-    const newData = approveChore(data, choreId, customPoints);
-    setData(newData);
+    // Get the chore to find out who claimed it
+    const chore = data.chores.find(c => c.id === choreId);
+    if (chore && chore.claimedBy) {
+      const oldPoints = data.houses[chore.claimedBy].points;
+      const pointsToAward = customPoints || chore.points;
+
+      // Approve chore
+      const newData = approveChore(data, choreId, customPoints);
+      setData(newData);
+
+      // Trigger particle effect
+      setParticleColor(data.houses[chore.claimedBy].accentColor);
+      setParticleTrigger(prev => prev + 1);
+
+      // Check for new achievements
+      const newAchievements = getNewAchievements(oldPoints, oldPoints + pointsToAward);
+      if (newAchievements.length > 0) {
+        setCurrentAchievement(newAchievements[0]);
+      }
+    } else {
+      const newData = approveChore(data, choreId, customPoints);
+      setData(newData);
+    }
   };
 
   // Handle rejecting a chore
@@ -68,7 +98,36 @@ function App() {
 
   // Handle awarding bonus points
   const handleAwardBonusPoints = (childId, points, reason) => {
+    const oldPoints = data.houses[childId].points;
     const newData = addPoints(data, childId, points, reason);
+    setData(newData);
+
+    // Trigger particle effect
+    setParticleColor(data.houses[childId].accentColor);
+    setParticleTrigger(prev => prev + 1);
+
+    // Check for new achievements
+    const newAchievements = getNewAchievements(oldPoints, oldPoints + points);
+    if (newAchievements.length > 0) {
+      setCurrentAchievement(newAchievements[0]);
+    }
+  };
+
+  // Handle deducting points
+  const handleDeductPoints = (childId, points, reason) => {
+    const newData = deductPoints(data, childId, points, reason);
+    setData(newData);
+  };
+
+  // Handle resetting house points
+  const handleResetHousePoints = (childId) => {
+    const newData = resetHousePoints(data, childId);
+    setData(newData);
+  };
+
+  // Handle resetting all points
+  const handleResetAllPoints = () => {
+    const newData = resetAllPoints(data);
     setData(newData);
   };
 
@@ -164,6 +223,8 @@ function App() {
                   May the best house win! Complete quests to earn house points.
                 </p>
               </div>
+
+              <Leaderboard houses={data.houses} />
 
               <div className="houses-container">
                 {Object.values(data.houses).map((house, index) => (
@@ -267,11 +328,26 @@ function App() {
                 onAddChore={handleAddChore}
                 onDeleteChore={handleDeleteChore}
                 onAwardBonusPoints={handleAwardBonusPoints}
+                onDeductPoints={handleDeductPoints}
+                onResetHousePoints={handleResetHousePoints}
+                onResetAllPoints={handleResetAllPoints}
               />
             </motion.div>
           )}
         </AnimatePresence>
       </main>
+
+      {/* Magical particle effects */}
+      <MagicalParticles color={particleColor} trigger={particleTrigger} />
+
+      {/* Achievement popup */}
+      {currentAchievement && (
+        <AchievementBadge
+          achievement={currentAchievement}
+          color={particleColor}
+          onDismiss={() => setCurrentAchievement(null)}
+        />
+      )}
     </div>
   );
 }

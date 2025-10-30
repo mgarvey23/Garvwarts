@@ -212,6 +212,70 @@ export const deleteChore = (data, choreId) => {
   return newData;
 };
 
+// Deduct points from a house
+export const deductPoints = (data, childId, points, reason) => {
+  const newData = { ...data };
+  if (newData.houses[childId]) {
+    newData.houses[childId].points = Math.max(0, newData.houses[childId].points - points);
+
+    // Add to history with negative points
+    newData.history.unshift({
+      id: Date.now(),
+      childId,
+      childName: newData.houses[childId].name,
+      points: -points,
+      reason,
+      timestamp: new Date().toISOString()
+    });
+
+    // Keep only last 100 history items
+    if (newData.history.length > 100) {
+      newData.history = newData.history.slice(0, 100);
+    }
+  }
+  return newData;
+};
+
+// Reset points for a specific house
+export const resetHousePoints = (data, childId) => {
+  const newData = { ...data };
+  if (newData.houses[childId]) {
+    const previousPoints = newData.houses[childId].points;
+    newData.houses[childId].points = 0;
+
+    // Add to history
+    newData.history.unshift({
+      id: Date.now(),
+      childId,
+      childName: newData.houses[childId].name,
+      points: -previousPoints,
+      reason: 'Points reset by parent',
+      timestamp: new Date().toISOString()
+    });
+  }
+  return newData;
+};
+
+// Reset all house points
+export const resetAllPoints = (data) => {
+  const newData = { ...data };
+  Object.keys(newData.houses).forEach(childId => {
+    const previousPoints = newData.houses[childId].points;
+    newData.houses[childId].points = 0;
+
+    // Add to history
+    newData.history.unshift({
+      id: Date.now(),
+      childId,
+      childName: newData.houses[childId].name,
+      points: -previousPoints,
+      reason: 'All points reset by parent',
+      timestamp: new Date().toISOString()
+    });
+  });
+  return newData;
+};
+
 // Verify parent password
 export const verifyPassword = (data, password) => {
   return password === data.settings.parentPassword;
@@ -221,6 +285,9 @@ export default {
   loadData,
   saveData,
   addPoints,
+  deductPoints,
+  resetHousePoints,
+  resetAllPoints,
   claimChore,
   releaseChore,
   approveChore,

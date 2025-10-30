@@ -1,0 +1,119 @@
+.achievement-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.achievement-badge {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.98), rgba(50, 50, 50, 0.95));
+  border: 4px solid;
+  border-radius: 20px;
+  padding: 60px 80px;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.achievement-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.achievement-icon {
+  margin: 0 auto 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.achievement-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: #f0c75e;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(240, 199, 94, 0.5);
+}
+
+.achievement-name {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.achievement-description {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0 0 30px 0;
+  font-style: italic;
+}
+
+.achievement-stars {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.achievement-dismiss {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin: 0;
+  animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .achievement-badge {
+    padding: 40px 30px;
+    max-width: 90%;
+  }
+
+  .achievement-icon {
+    transform: scale(0.8);
+  }
+
+  .achievement-title {
+    font-size: 1.3rem;
+  }
+
+  .achievement-name {
+    font-size: 1.8rem;
+  }
+}
