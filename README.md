@@ -88,6 +88,27 @@ npm run build
 
 **Note**: The app uses localStorage, so each user's data is stored locally in their browser. For multi-device support, you'd need to add a backend like Firebase.
 
+### Troubleshooting Deployment
+
+**If you see "Multiple artifacts" error:**
+1. Go to your repository's **Actions** tab on GitHub
+2. Find the failed workflow run
+3. Click **Re-run all jobs** (top right)
+4. The new workflow will cancel old runs automatically
+
+**If deployment still fails:**
+1. Go to repository **Settings** → **Actions** → **General**
+2. Under "Workflow permissions", ensure:
+   - **Read and write permissions** is selected
+   - **Allow GitHub Actions to create and approve pull requests** is checked
+3. Save and re-run the workflow
+
+**Common issues:**
+- Forgot to enable GitHub Pages in Settings → Pages
+- Source is set to "Deploy from branch" instead of "GitHub Actions"
+- Pushing to wrong branch (must be main or master)
+- First deployment can take 2-5 minutes
+
 ## How to Use
 
 ### As a Kid:
