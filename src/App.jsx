@@ -147,10 +147,7 @@ function App() {
 
   // Handle navigation
   const handleNavigation = (view) => {
-    if (view === 'parent' && !isParentAuthenticated) {
-      // Show password prompt
-      return;
-    }
+    // Always set the view - the view itself handles authentication
     setCurrentView(view);
   };
 
