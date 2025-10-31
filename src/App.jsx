@@ -157,6 +157,14 @@ function App() {
     setCurrentView(view);
   };
 
+  // Handle logout
+  const handleLogout = () => {
+    setIsParentAuthenticated(false);
+    setPasswordInput('');
+    setPasswordError('');
+    setCurrentView('home');
+  };
+
   return (
     <div className="app">
       {/* Magical background elements */}
@@ -334,6 +342,7 @@ function App() {
                 onDeductPoints={handleDeductPoints}
                 onResetHousePoints={handleResetHousePoints}
                 onResetAllPoints={handleResetAllPoints}
+                onLogout={handleLogout}
               />
             </motion.div>
           )}

@@ -9,6 +9,13 @@
   margin-bottom: 40px;
 }
 
+.dashboard-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 .dashboard-title {
   display: flex;
   align-items: center;
@@ -27,6 +34,29 @@
   font-style: italic;
   opacity: 0.8;
   margin: 0;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: 2px solid #b91c1c;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.logout-button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+  transform: translateY(-2px);
 }
 
 .dashboard-section {

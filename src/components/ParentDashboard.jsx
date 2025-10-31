@@ -11,7 +11,8 @@ import {
   Award,
   Minus,
   RotateCcw,
-  AlertTriangle
+  AlertTriangle,
+  LogOut
 } from 'lucide-react';
 import './ParentDashboard.css';
 
@@ -26,7 +27,8 @@ const ParentDashboard = ({
   onAwardBonusPoints,
   onDeductPoints,
   onResetHousePoints,
-  onResetAllPoints
+  onResetAllPoints,
+  onLogout
 }) => {
   const [newChoreName, setNewChoreName] = useState('');
   const [newChorePoints, setNewChorePoints] = useState('');
@@ -97,10 +99,23 @@ const ParentDashboard = ({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h2 className="dashboard-title">
-          <Wand2 size={32} /> Headmaster's Office
-        </h2>
-        <p className="dashboard-subtitle">Manage quests and award house points</p>
+        <div className="dashboard-header-content">
+          <div>
+            <h2 className="dashboard-title">
+              <Wand2 size={32} /> Headmaster's Office
+            </h2>
+            <p className="dashboard-subtitle">Manage quests and award house points</p>
+          </div>
+          <motion.button
+            className="logout-button"
+            onClick={onLogout}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <LogOut size={20} />
+            Logout
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Pending Approvals */}
