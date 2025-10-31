@@ -147,6 +147,12 @@ function App() {
 
   // Handle navigation
   const handleNavigation = (view) => {
+    // If navigating away from parent view, log out
+    if (currentView === 'parent' && view !== 'parent') {
+      setIsParentAuthenticated(false);
+      setPasswordInput('');
+      setPasswordError('');
+    }
     // Always set the view - the view itself handles authentication
     setCurrentView(view);
   };
