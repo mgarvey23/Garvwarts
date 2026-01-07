@@ -18,8 +18,8 @@ const initialData = {
       id: 'avery',
       name: 'Avery',
       house: 'Ravenclaw',
-      color: '#0e1a40', // Dark blue
-      accentColor: '#1a2a5e',
+      color: '#2a5298', // Brighter Ravenclaw blue
+      accentColor: '#4a7bc8',
       points: 0
     },
     josie: {
