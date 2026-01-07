@@ -15,7 +15,12 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin: 0 0 10px 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700,
+    2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #fff;
   font-family: 'Cinzel', serif;
 }
@@ -31,6 +36,11 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   backdrop-filter: blur(10px);
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700;
 }
 
 .glass-wrapper {
@@ -211,7 +221,12 @@
   font-size: 3rem;
   font-weight: bold;
   font-family: 'Cinzel', serif;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700,
+    0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .points-label {
@@ -221,6 +236,11 @@
   letter-spacing: 3px;
   opacity: 0.8;
   margin-top: 5px;
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700;
 }
 
 .overflow-badge {
@@ -234,6 +254,11 @@
   letter-spacing: 1px;
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
   animation: pulse 1.5s infinite;
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700;
 }
 
 @keyframes pulse {
@@ -253,4 +278,9 @@
   opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow:
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700;
 }
