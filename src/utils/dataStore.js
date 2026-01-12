@@ -31,6 +31,8 @@ const initialData = {
       points: 0
     }
   },
+  lastResetDate: new Date().toISOString(),
+  previousMonthWinner: null,
   chores: [
     // Default chores with point values
     { id: 1, name: 'Make your bed', points: 50, status: 'available', claimedBy: null, claimedAt: null },
@@ -58,6 +60,67 @@ const initialData = {
   }
 };
 
+// Check if it's a new month since last reset
+const isNewMonth = (lastResetDate) => {
+  const lastReset = new Date(lastResetDate);
+  const now = new Date();
+
+  return lastReset.getMonth() !== now.getMonth() ||
+         lastReset.getFullYear() !== now.getFullYear();
+};
+
+// Get the month winner and reset points
+const performMonthlyReset = (data) => {
+  const newData = { ...data };
+
+  // Find the winner (house with highest points)
+  const housesArray = Object.values(newData.houses);
+  const winner = housesArray.reduce((prev, current) =>
+    (current.points > prev.points) ? current : prev
+  );
+
+  // Get month/year of the completed month
+  const lastResetDate = new Date(newData.lastResetDate);
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthName = monthNames[lastResetDate.getMonth()];
+  const year = lastResetDate.getFullYear();
+
+  // Save the winner (only if there were any points)
+  if (winner.points > 0) {
+    newData.previousMonthWinner = {
+      childId: winner.id,
+      childName: winner.name,
+      houseName: winner.house,
+      points: winner.points,
+      month: monthName,
+      year: year,
+      color: winner.color,
+      accentColor: winner.accentColor
+    };
+  }
+
+  // Reset all house points to 0
+  Object.keys(newData.houses).forEach(childId => {
+    newData.houses[childId].points = 0;
+  });
+
+  // Update last reset date
+  newData.lastResetDate = new Date().toISOString();
+
+  // Add to history
+  newData.history.unshift({
+    id: Date.now(),
+    childId: 'system',
+    childName: 'System',
+    points: 0,
+    reason: `Monthly reset - ${monthName} ${year} winner: ${winner.name} (${winner.house}) with ${winner.points} points`,
+    timestamp: new Date().toISOString()
+  });
+
+  return newData;
+};
+
 // Load data from localStorage
 export const loadData = () => {
   try {
@@ -65,11 +128,19 @@ export const loadData = () => {
     if (stored) {
       const parsed = JSON.parse(stored);
       // Merge with initial data to ensure new fields are added
-      return {
+      let data = {
         ...initialData,
         ...parsed,
         houses: { ...initialData.houses, ...parsed.houses }
       };
+
+      // Check if we need to perform monthly reset
+      if (data.lastResetDate && isNewMonth(data.lastResetDate)) {
+        data = performMonthlyReset(data);
+        saveData(data); // Save the reset immediately
+      }
+
+      return data;
     }
   } catch (error) {
     console.error('Error loading data:', error);

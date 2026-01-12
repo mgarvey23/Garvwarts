@@ -5,6 +5,7 @@ import HouseGlass from './components/HouseGlass';
 import ChoreBoard from './components/ChoreBoard';
 import ParentDashboard from './components/ParentDashboard';
 import Leaderboard from './components/Leaderboard';
+import PreviousWinner from './components/PreviousWinner';
 import MagicalParticles from './components/MagicalParticles';
 import AchievementBadge, { getNewAchievements } from './components/AchievementBadge';
 import {
@@ -234,6 +235,8 @@ function App() {
                   May the best house win! Complete quests to earn house points.
                 </p>
               </div>
+
+              <PreviousWinner winner={data.previousMonthWinner} />
 
               <Leaderboard houses={data.houses} />
 
