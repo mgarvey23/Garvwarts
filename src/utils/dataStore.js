@@ -121,6 +121,17 @@ const performMonthlyReset = (data) => {
   return newData;
 };
 
+// Save data to localStorage
+export const saveData = (data) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch (error) {
+    console.error('Error saving data:', error);
+    return false;
+  }
+};
+
 // Load data from localStorage
 export const loadData = () => {
   try {
@@ -146,17 +157,6 @@ export const loadData = () => {
     console.error('Error loading data:', error);
   }
   return initialData;
-};
-
-// Save data to localStorage
-export const saveData = (data) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    return true;
-  } catch (error) {
-    console.error('Error saving data:', error);
-    return false;
-  }
 };
 
 // Add points to a house
