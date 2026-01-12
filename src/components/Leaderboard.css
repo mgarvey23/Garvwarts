@@ -37,10 +37,10 @@
   color: #f0c75e;
   margin: 0;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700,
     2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -87,10 +87,10 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .leaderboard-item.rank-1 .leaderboard-rank {
@@ -107,10 +107,10 @@
   font-family: 'Cinzel', serif;
   margin-bottom: 5px;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .house-label {
@@ -118,10 +118,10 @@
   font-weight: 500;
   opacity: 0.9;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .leaderboard-points {
@@ -137,10 +137,10 @@
   font-family: 'Cinzel', serif;
   line-height: 1;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .points-text {
@@ -149,10 +149,10 @@
   letter-spacing: 1px;
   opacity: 0.8;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .crown-badge {
@@ -184,10 +184,10 @@
   font-style: italic;
   color: #f0c75e;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 @media (max-width: 768px) {

@@ -27,10 +27,10 @@
   font-family: 'Cinzel', serif;
   color: #f0c75e;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700,
     2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -40,10 +40,10 @@
   opacity: 0.8;
   margin: 0;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .logout-button {
@@ -88,10 +88,10 @@
   color: #f0c75e;
   font-family: 'Cinzel', serif;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .approval-grid {

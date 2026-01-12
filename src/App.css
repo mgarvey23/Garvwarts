@@ -86,10 +86,10 @@ body {
   font-size: 2rem;
   font-weight: bold;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700,
     2px 2px 4px rgba(0, 0, 0, 0.7);
   letter-spacing: 2px;
 }
@@ -115,10 +115,10 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .nav-button:hover {
@@ -160,10 +160,10 @@ body {
   font-weight: bold;
   color: #f0c75e;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700,
     0 0 20px rgba(240, 199, 94, 0.5),
     2px 2px 4px rgba(0, 0, 0, 0.7);
   margin: 0 0 20px 0;
@@ -176,10 +176,10 @@ body {
   opacity: 0.9;
   color: #ddd;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .houses-container {
@@ -226,10 +226,10 @@ body {
   color: #f0c75e;
   margin: 0 0 15px 0;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700,
     2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -238,10 +238,10 @@ body {
   opacity: 0.8;
   margin: 0 0 40px 0;
   text-shadow:
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700;
+    -0.5px -0.5px 0 #FFD700,
+    0.5px -0.5px 0 #FFD700,
+    -0.5px 0.5px 0 #FFD700,
+    0.5px 0.5px 0 #FFD700;
 }
 
 .login-box form {
